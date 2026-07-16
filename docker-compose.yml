@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  ai-agent-1:
+    build: ./ai-agent-1
+    networks:
+      - ai_net
+    # Monta sistema de arquivos como somente-leitura para segurança
+    read_only: true
+    # Permite escrita apenas temporária se a IA precisar de processamento
+    tmpfs:
+      - /tmp
+
+  ai-agent-2:
+    build: ./ai-agent-2
+    networks:
+      - ai_net
+    read_only: true
+    tmpfs:
+      - /tmp
+
+networks:
+  ai_net:
+    driver: bridge # Rede fechada, invisível fora do Docker

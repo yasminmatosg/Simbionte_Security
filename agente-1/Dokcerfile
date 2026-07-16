@@ -1,0 +1,17 @@
+FROM node:20-slim
+
+# Define o diretório de trabalho
+WORKDIR /usr/src/app
+
+RUN chown -R node:node /usr/src/app
+
+# Muda para o usuário não-root para mitigar escalonamento de privilégios
+USER node
+
+# Copia package.json (se existir)
+COPY --chown=node:node package*.json ./
+
+# Instala dependências (ex: axios ou dotenv se necessário no código)
+RUN if [ -f package.json ]; then npm ci; fi
+
+CMD ["node", "test-keys.js"]
