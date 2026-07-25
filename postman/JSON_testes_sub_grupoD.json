@@ -1,0 +1,106 @@
+{
+  "info": {
+    "name": "QA Simbionte - Subgrupo D (Implementação Real)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "QA-01: Cadastro - Senha Curta (Zod Validation)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/auth/register",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Teste QA\",\n  \"email\": \"{{email_valido}}\",\n  \"senha\": \"123\"\n}"
+        }
+      }
+    },
+    {
+      "name": "QA-02: Cadastro - Email Conflict",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/auth/register",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Teste QA\",\n  \"email\": \"{{email_valido}}\",\n  \"senha\": \"{{senha_valida_min8}}\"\n}"
+        }
+      }
+    },
+    {
+      "name": "QA-03 e QA-04: Login - Falha de Credenciais",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/auth/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"{{email_valido}}\",\n  \"senha\": \"{{senha_invalida}}\"\n}"
+        }
+      }
+    },
+    {
+      "name": "QA-05 e QA-06: Rota Privada - Falhas de JWT",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token_invalido_ou_expirado}}"
+          }
+        ],
+        "url": "{{base_url}}/me"
+      }
+    },
+    {
+      "name": "QA-10: Cadastro - Injeção de Script/SQL (Input Validation)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/auth/register",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"<script>alert('XSS')</script>\",\n  \"email\": \"admin' OR 1=1 --@teste.com\",\n  \"senha\": \"senha123\"\n}"
+        }
+      }
+    },
+    {
+      "name": "QA-11: Brute Force (Rate Limit 20/15min)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/auth/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"{{email_valido}}\",\n  \"senha\": \"{{senha_invalida}}\"\n}"
+        }
+      }
+    }
+  ]
+}
