@@ -24,11 +24,15 @@ Durante esta etapa da pesquisa, o Subgrupo D foi responsável pela elaboração 
 
 ```text
 .
+.
 ├── documentos/
 │   ├── simbionte_projeto_pesquisa.pdf
 │   ├── subgrupo_D_relatorio_tecnico_governanca_e_seguranca.pdf
 │   ├── subgrupo_D_proposta_de_regras_e_fluxos_operacionais.pdf
 │   └── subgrupo_D_config_ambiente_autenticacao_validacao_seguranca.pdf
+│
+├── postman/
+│   └── JSON_testes_sub_grupoD.json
 │
 ├── seguranca/
 │   ├── seguranca.js
@@ -36,9 +40,6 @@ Durante esta etapa da pesquisa, o Subgrupo D foi responsável pela elaboração 
 │   ├── package-lock.json
 │   ├── .env.example
 │   └── .gitignore
-│
-├── postman/
-│   └── Simbionte.postman_collection.json
 │
 └── README.md
 ```
