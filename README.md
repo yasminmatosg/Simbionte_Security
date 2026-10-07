@@ -1,22 +1,21 @@
-# 🔒 Simbionte — Subgrupo D | Segurança e Regras
+# 🔒 Simbionte — Subgrupo D | Segurança, Regras e Orquestração
 
-Repositório oficial do **Subgrupo D – Segurança e Regras** da Iniciação Científica **Projeto Simbionte – Simulação de Ecossistema de Influência Digital**.
+Repositório oficial do **Subgrupo D – Segurança e Regras** da Iniciação Científica **Projeto Simbionte – Simulação de Ecossistema de Influência Digital**. 
 
-Este repositório reúne os documentos e artefatos técnicos produzidos pelo Subgrupo D durante o desenvolvimento da pesquisa, com foco na definição, análise e validação dos mecanismos de segurança da aplicação, incluindo autenticação, governança, privacidade e qualidade da API.
+Este repositório reúne os documentos, códigos de middleware, artefatos técnicos e evidências produzidos pelo Subgrupo D, com foco na definição, análise e validação dos mecanismos de segurança, controle de acesso, sanitização de logs e regras de negócio do orquestrador.
 
 ---
 
 # 📌 Entregas do Subgrupo D
 
-Durante esta etapa da pesquisa, o Subgrupo D foi responsável pela elaboração de documentos técnicos e pela validação dos mecanismos de segurança implementados na API desenvolvida pelo Subgrupo A. As principais entregas foram:
+Durante esta etapa da pesquisa, o Subgrupo D foi responsável por implementar, testar e documentar os seguintes componentes críticos:
 
-- Relatório Técnico de Governança, Segurança e Privacidade;
-- Proposta de Regras, Fluxos Operacionais e Diretrizes de Conduta do ecossistema Simbionte;
-- Documento de Configuração do Ambiente e Validação da Implementação da Autenticação;
-- Módulo demonstrativo de criptografia em JavaScript utilizando **bcrypt**, desenvolvido para exemplificar o processo de geração e verificação de hashes de senhas;
-- Documentação do contrato da API de autenticação, alinhada à implementação disponibilizada pelo Subgrupo A;
-- Elaboração da matriz de testes de segurança (Quality Assurance), contemplando cenários de autenticação, autorização e tratamento de exceções;
-- Coleção de testes em **Postman** utilizada para validação dos principais fluxos de autenticação da API.
+- **Controle de Acesso e Titularidade (`owner_id`):** Implementação de middleware restritivo para validação de permissões e bloqueio preventivo (HTTP 403 Forbidden).
+- **Sanitização de Logs de Exceção:** Tratamento global de erros com mascaramento automático de dados confidenciais e instruções estratégicas (`[CONTEÚDO PROTEGIDO]`).
+- **Regras do Ciclo e Limites do Orquestrador:** Trava de limite máximo de ciclos com transição automática de status para `CONCLUIDA`.
+- **Suspensão Automática de Agentes:** Regra de negócio para pausar por 2 ciclos agentes com reputação inferior a 10, otimizando o consumo de chamadas de API.
+- **Relatórios Técnicos e Documentação:** Elaboração da documentação de governança, segurança, privacidade e fluxo operacional.
+- **Matriz de Testes de Segurança e Evidências:** Validação de cenários de caminho triste e testes automatizados via Postman.
 
 ---
 
@@ -24,94 +23,51 @@ Durante esta etapa da pesquisa, o Subgrupo D foi responsável pela elaboração 
 
 ```text
 .
-.
 ├── documentos/
 │   ├── simbionte_projeto_pesquisa.pdf
 │   ├── subgrupo_D_relatorio_tecnico_governanca_e_seguranca.pdf
 │   ├── subgrupo_D_proposta_de_regras_e_fluxos_operacionais.pdf
 │   └── subgrupo_D_config_ambiente_autenticacao_validacao_seguranca.pdf
-│
+├── evidencias/
+│   └── sanitizacao/
+│       └── evidencia-sanitizacao.png
 ├── postman/
 │   └── JSON_testes_sub_grupoD.json
-│
 ├── seguranca/
 │   ├── seguranca.js
 │   ├── package.json
 │   ├── package-lock.json
 │   ├── .env.example
 │   └── .gitignore
-│
 └── README.md
 ```
 
 ---
 
-# 📄 Documentação
+## 📄 Documentação e Evidências
 
-A pasta **documentos/** reúne os principais artefatos produzidos pelo Subgrupo D durante esta etapa da Iniciação Científica, incluindo:
+A pasta `documentos/` reúne os relatórios técnicos e propostas de regras operacionais desenvolvidas pelo subgrupo. Adicionalmente, a pasta `evidencias/sanitizacao/` armazena os registros visuais e testes práticos que comprovam o correto funcionamento da sanitização de logs e mascaramento de dados sensíveis no terminal do servidor.
 
-- Relatório Técnico de Governança, Segurança e Privacidade;
-- Proposta de Regras e Fluxos Operacionais;
-- Documento de Configuração do Ambiente e Validação da Implementação da Autenticação.
+## 🔑 Módulos de Segurança e Middlewares
 
-Os documentos contemplam aspectos relacionados à governança do ecossistema, classificação de dados, requisitos de segurança, autenticação, contratos da API e validação da implementação.
+A implementação desenvolvida pelo subgrupo contempla:
+* **Validação de propriedade:** Controle de acesso rigoroso baseado em rotas.
+* **Sanitização de rastreios:** Proteção de *stack traces* e isolamento de variáveis estratégicas.
+* **Criptografia:** Uso de `bcrypt` e gestão segura de segredos via variáveis de ambiente.
 
----
+## 📚 Tecnologias Utilizadas
 
-# 🔐 Módulo de Criptografia
+* Node.js / TypeScript / JavaScript
+* Express.js
+* Prisma / PostgreSQL
+* Postman
+* Git & GitHub
 
-A pasta **seguranca/** contém um módulo demonstrativo desenvolvido pelo Subgrupo D utilizando a biblioteca **bcrypt**.
+## 👥 Integrantes
 
-O objetivo do módulo é ilustrar boas práticas para armazenamento seguro de credenciais, contemplando:
+* Ana Luiza
+* Yasmin Matos
 
-- geração de hashes de senhas;
-- validação de credenciais por comparação de hashes;
-- utilização de variáveis de ambiente para configuração;
-- exemplo de utilização das funções implementadas.
+## 📖 Sobre o Projeto
 
-Este módulo possui caráter demonstrativo e foi desenvolvido como apoio técnico às atividades de pesquisa relacionadas à autenticação.
-
----
-
-# 🧪 Validação de Segurança
-
-Durante esta etapa da pesquisa foram analisados e documentados os principais mecanismos de segurança empregados na implementação da API, dentre eles:
-
-- Hash de senhas com **bcrypt**;
-- Autenticação baseada em **JSON Web Tokens (JWT)**;
-- Proteção de rotas por middleware de autenticação;
-- Gerenciamento de segredos por variáveis de ambiente;
-- Refresh Tokens com rotação;
-- Rate Limiting;
-- Utilização do **Helmet** para configuração de cabeçalhos HTTP de segurança;
-- Tratamento padronizado de erros;
-- Matriz de testes de exceção (*caminho triste*);
-- Coleção de testes automatizados em Postman.
-
----
-
-# 📚 Tecnologias Utilizadas
-
-- Node.js
-- JavaScript
-- bcrypt
-- dotenv
-- Postman
-- Git
-- GitHub
-
----
-
-# 👥 Integrantes
-
-- Ana Luiza
-- Vitor
-- Yasmin
-
----
-
-# 📖 Sobre o Projeto
-
-Este repositório corresponde exclusivamente às entregas desenvolvidas pelo **Subgrupo D – Segurança e Regras** da Iniciação Científica **Projeto Simbionte – Simulação de Ecossistema de Influência Digital**.
-
-As implementações da API de autenticação utilizadas como objeto de validação pertencem ao repositório do **Subgrupo A (Backend)**, enquanto este repositório reúne a documentação técnica, o módulo demonstrativo de criptografia e os artefatos de validação produzidos pelo Subgrupo D.
+Este repositório corresponde exclusivamente às entregas desenvolvidas pelo **Subgrupo D – Segurança e Regras** do Projeto Simbionte.
