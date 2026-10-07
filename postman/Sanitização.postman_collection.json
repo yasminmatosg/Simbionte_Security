@@ -1,0 +1,30 @@
+{
+  "info": {
+    "_postman_id": "e48e1b9a-4c69-4b3b-b262-72c5e1908406",
+    "name": "Sanitização",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "56885334",
+    "_collection_link": "https://go.postman.co/collection/56885334-e48e1b9a-4c69-4b3b-b262-72c5e1908406?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "instrucaoEstrategica",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/teste-erro",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "teste-erro"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
